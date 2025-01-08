@@ -17,7 +17,7 @@ class _HomeScreenState extends State<HomeScreen> with SingleTickerProviderStateM
 
   final List<Widget> screenList = [
     const AllTransactionScreen(title: 'All',),
-    const IncomeTrasactionScreen(title: 'Income'),
+    const IncomeTransactionScreen(title: 'Income'),
     const ExpenseTransactionScreen(title: 'Expense'),
   ];
 
