@@ -95,7 +95,7 @@ class _ExpenseTransactionScreenState extends State<ExpenseTransactionScreen> {
                         : Colors.red,
                   ),
                   title: Text(
-                    '${row.type}: \$${row.amount}',
+                    '${row.type}: \₹${row.amount}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(row.description),
