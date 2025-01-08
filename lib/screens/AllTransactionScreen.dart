@@ -1,9 +1,7 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_daily_income_expense_tracker/models/Transaction.dart';
 import 'package:flutter_daily_income_expense_tracker/utils/Constants.dart';
-
 import 'package:http/http.dart' as http;
 
 class AllTransactionScreen extends StatefulWidget {
@@ -17,7 +15,6 @@ class AllTransactionScreen extends StatefulWidget {
 
 class _AllTransactionScreenState extends State<AllTransactionScreen> {
   List<Transaction> transactions = [];
-
   bool isLoading = true;
 
   @override
@@ -66,41 +63,91 @@ class _AllTransactionScreenState extends State<AllTransactionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      //   centerTitle: true,
+      //   elevation: 0,
+      //   backgroundColor: Colors.indigo,
+      // ),
       body: isLoading
-          ? Center(
+          ? const Center(
         child: CircularProgressIndicator(),
       )
           : transactions.isEmpty
-          ? Center(child: Text('No transactions found.'))
+          ? const Center(
+        child: Text(
+          'No transactions found.',
+          style: TextStyle(fontSize: 16, color: Colors.grey),
+        ),
+      )
           : ListView.builder(
-          itemCount: transactions.length,
-          itemBuilder: (context, index) {
-            final row = transactions[index];
-            // print(row);
-
-            return Card(
-                margin: const EdgeInsets.symmetric(
-                    vertical: 8.0, horizontal: 16.0),
-                child: ListTile(
-                  leading: Icon(
-                    row.type == 'INCOME'
-                        ? Icons.arrow_downward
-                        : Icons.arrow_upward,
-                    color: row.type == 'INCOME'
-                        ? Colors.green
-                        : Colors.red,
+        padding: const EdgeInsets.all(8.0),
+        itemCount: transactions.length,
+        itemBuilder: (context, index) {
+          final row = transactions[index];
+          return Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            ),
+            elevation: 4,
+            margin: const EdgeInsets.symmetric(
+                vertical: 8.0, horizontal: 12.0),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: row.type == 'INCOME'
+                    ? Colors.green.withOpacity(0.2)
+                    : Colors.red.withOpacity(0.2),
+                child: Icon(
+                  row.type == 'INCOME'
+                      ? Icons.arrow_downward
+                      : Icons.arrow_upward,
+                  color: row.type == 'INCOME'
+                      ? Colors.green
+                      : Colors.red,
+                ),
+              ),
+              title: Text(
+                '₹${row.amount}',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 4),
+                  Text(
+                    row.description,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.black87,
+                    ),
                   ),
-                  title: Text(
-                    '${row.type}:  ₹${row.amount}',
-                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  const SizedBox(height: 4),
+                  Text(
+                    row.date,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      color: Colors.grey,
+                    ),
                   ),
-                  subtitle: Text(row.description),
-                  trailing: Text(row.date),
-                ));
-          }),
+                ],
+              ),
+              trailing: Text(
+                row.type,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: row.type == 'INCOME'
+                      ? Colors.green
+                      : Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
