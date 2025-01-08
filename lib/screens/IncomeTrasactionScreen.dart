@@ -65,12 +65,12 @@ class _IncomeTransactionScreenState extends State<IncomeTransactionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        centerTitle: true,
-        elevation: 2,
-        backgroundColor: Colors.green.shade700,
-      ),
+      // appBar: AppBar(
+      //   title: Text(widget.title),
+      //   centerTitle: true,
+      //   elevation: 2,
+      //   backgroundColor: Colors.green.shade700,
+      // ),
       body: isLoading
           ? const Center(
         child: CircularProgressIndicator(),
