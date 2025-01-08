@@ -134,7 +134,7 @@ class _IncomeTransactionScreenState extends State<IncomeTransactionScreen> {
                 ],
               ),
               trailing: Icon(
-                Icons.monetization_on,
+                Icons.currency_rupee,
                 color: Colors.green.shade700,
                 size: 30,
               ),
