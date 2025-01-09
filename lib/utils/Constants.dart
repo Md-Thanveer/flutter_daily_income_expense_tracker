@@ -8,4 +8,5 @@ class Constants  {
 
   static const String EXPENSE_TRANSACTION_ROUTE = "/v2/transactions?type=expense";
 
+  static const String ADD_TRANSACTION = '/v2/transactions';
 }
