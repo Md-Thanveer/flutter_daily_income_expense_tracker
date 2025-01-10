@@ -9,4 +9,9 @@ class Constants  {
   static const String EXPENSE_TRANSACTION_ROUTE = "/v2/transactions?type=expense";
 
   static const String ADD_TRANSACTION = '/v2/transactions';
+
+  // Route for a single transaction. Replace {id} with the actual transaction ID.
+  static const String SINGLE_TRANSACTION_ROUTE = "/v2/transactions/{id}";
+  
+  static const String UPDATE_TRANSACTION_ROUTE = "/v2/transactions/{id}";
 }
